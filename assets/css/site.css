@@ -1,0 +1,391 @@
+/* REJECTED OPTION BECAUSE IT GAVE ME PROBLEMS, BUT GOOD TO KNOW
+
+Relative and absolute positioning
+To make pictures that center and scale nicely (stretch and contract as screen changes size)
+-------------------------------------------------------------------------------------------
+Must be set for the parent:
+position: relative; (this property tells the absolutely positioned element that its absolute position is within that parent; otherwise, it will relate to the document)
+
+header img {
+  display: block;
+  width: 100%;
+}
+
+Must be set for the child: top, right, bottom, or left. 
+
+For picture in header, e.g.:
+position: absolute;
+top: 1rem;
+
+*/
+
+/* Universal selector */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}        
+
+@font-face { 
+    font-family: "Roboto-Condensed-Light"; 
+    src: url(../fonts/RobotoCondensed-Light.ttf); 
+} 
+
+@font-face { 
+    font-family: "Oswald-Medium"; 
+    src: url(../fonts/Oswald-Medium.ttf); 
+} 
+
+/* HTML */
+
+html {
+    scroll-behavior: smooth;
+    font-family: "Roboto-Condensed-Light", 'Times New Roman', Times, serif;
+    font-size: 25px;
+    --clr-aqua: #aedde3;
+    --clr-blue: #5f7ecb;
+    --clr-dark-aqua: #009bb0;
+    --clr-dark-blue: #3b5491; 
+    --inline-margin-and-padding: 18px;
+    --article-grid-gap: 30px;
+    --description-list-gap: 25px;
+}
+
+/* Utility classes */
+
+.aqua-text {
+    color: var(--clr-aqua);
+}
+
+.blue-text {
+    color: var(--clr-blue);
+}
+
+.dark-aqua-text {
+    color: var(--clr-dark-aqua);
+}
+
+.dark-blue-text {
+    color: var(--clr-dark-blue);
+}
+
+h2,
+.subtitle {
+    color: var(--clr-dark-aqua);
+}
+
+.subtitle {
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+h2 {
+    padding-top: 1.3rem;
+    font-size: 1.3rem;
+}
+
+/* all h3s are in the footer */
+h3 {
+    padding-top: 1rem;
+    font-size: .8rem;
+    color: white;
+}
+
+.widely-spaced-p {
+    padding-top: .8rem;
+}
+
+/* the main-nav links have a slightly different styling */
+footer a {
+    font-size: .8rem;
+    color: var(--clr-aqua);
+}
+
+.main-nav a:hover,
+.main-nav a:focus {
+    text-decoration: underline;
+    color: var(--clr-dark-aqua);
+}
+
+footer a:hover,
+footer a:focus {
+    color: var(--clr-dark-aqua);
+}
+
+/* background-color: var(--clr-dark-blue); works, but it is the same colour as the background. */
+.main-nav a:active,
+footer a:active {
+    background-color: #324473;   
+}
+
+a img:hover,
+a img:focus {
+    filter: invert(40%);   
+}
+
+a img:active {
+    transform: translateY(10%); 
+}
+
+/* HEADER */
+
+header {
+    /* Padding-inline and block are diff. in mobile v., not in tablet v., so the teacher must have adjusted the position with properties relative/absolute position + top instead of padding, but padding is easier. */
+    padding-inline: var(--inline-margin-and-padding);
+    padding-top: 35px; 
+}
+
+@media screen and (max-width: 800px) {
+    header {
+        padding-inline: 9px;
+        padding-top: 12px; 
+        padding-bottom: .2rem;
+    }
+}
+
+.pageheader__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 125px;
+    background-image: url(../img/header/Header-Image.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* The following negative margin is to remove the thin white line that shows between the header and the nav on small screens. */
+    margin-bottom: -1px;
+    /* TO DO: adjust the position of the background more accurately (upwards) in order to avoid breaking the straight line on wide screens. */
+}
+
+header img {
+    grid-row: 1/2;
+    width: 45%;
+    object-fit: contain;
+}
+  
+/* BODY */
+
+.nav-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    background-image: url(../img/header/Header-Shape-Color.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.main-nav {
+    /* Teacher says that a grid row can be sticky. The problem I encountered was caused by the element in which I had put the nav (it was the 2nd row of the header grid). Now it's at the top of the body. */
+    /* "Note: You must specify at least one of top, right, bottom or left for sticky positioning to work." https://www.w3schools.com/howto/howto_css_sticky_element.asp */
+    display: flex;
+    position: sticky;
+    /* top: 10px; is for testing purposes */
+    top: 0px;
+    text-transform: uppercase;
+    padding-bottom: .6rem;
+    align-self: flex-end;
+    justify-self: right;
+    background-image: url(../img/header/Header-Shape-Color.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* I tried to add a shadow with the 2 following, to no avail (there are no divs, and box-shadow works on divs):
+    border-bottom: 20px grey;
+    box-shadow: 20px 20px 50px 15px grey;
+    TO DO: add a div
+    */
+    & ul {
+        list-style: none;
+    }
+    & li {
+        /* margin-inline was used to add space between the inline menu items. 
+        Adding space between the inline menu items with the gap property did not work here, even though it worked in the responsive burgermenu project at AT. 
+        */
+        display: inline-block;
+        margin-inline: .75rem;
+    }    
+    & a {
+        color: var(--clr-aqua);
+        text-decoration: none;
+    }    
+}    
+
+/* Media queries: in a mobile-first design project, the following changes the shape of the menu when the screen width is over 600px.
+PROBLEM: I experimented in another file, and it bugs if I trie to get the rule @media screen and (min-width: 1200px) set for a master desktop version, probably because the grid is already defined elsewhere (more or less). Here, it doesn't do anything.
+TO DO: This is not as close to the mobile header as it needs to be, but it is sticky and responsive. */
+
+@media screen and (min-width: 1200px) {
+    .main-nav {
+        display: flex;
+        flex-direction: row;
+    }
+  }
+  
+@media screen and (min-width: 801px) and (max-width: 799px) {
+    .main-nav {
+        display: flex;
+        flex-direction: row;
+        justify-self: left;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .main-nav {
+        display: flex;
+        flex-direction: column;
+        justify-self: left;
+        margin-inline: 10rem;
+        border: solid;
+        border-color: white;
+        & a:hover, a:focus, a:active {
+            background-color: var(--clr-blue);
+        }
+    }
+}
+  
+main {
+    margin-bottom: 1rem;
+}
+
+article {
+    /* I am avoiding the use of a wrapper to fill most of the screen regardless of the device. Moreover, picture grids are wall-to-wall */
+    margin-inline: var(--inline-margin-and-padding);
+}    
+
+@media screen and (max-width: 800px) {
+    article {
+        margin-inline: 9px;
+    }
+}
+
+/* Grids with pictures in them */
+
+.section-1-grid-1,
+.section-2-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    margin-top: 1rem;
+}
+
+@media screen and (max-width: 800px) {
+    .section-1-grid-1,
+    .section-2-grid-2 {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
+
+.section-3-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.section-4-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    margin-top: 1rem;
+}
+
+.section-1-grid-1 img,
+.section-2-grid-2 img,
+.section-3-grid img,
+.section-4-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Grids with article text */
+
+.section-1-grid-2,
+.section-2-grid-1 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    gap: var(--article-grid-gap);
+    & p {
+        padding-top: 1rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .section-1-grid-2,
+    .section-2-grid-1 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Grids with description lists */
+
+.section-1-grid-3,
+.section-2-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 1fr;
+    gap: var(--description-list-gap);
+    margin-top: 1rem;
+}
+
+.dl-entry {
+    padding-inline: 1.1rem;
+}
+
+dt {
+    display: inline;
+}
+
+/* FOOTER */
+
+footer {
+    /* Padding-inline is diff. in mobile v. only; p-block is the same (relative to font size, but that is also spacing between lines) */
+    padding-inline: var(--inline-margin-and-padding);
+    /* TO DO: the logo has some built-in padding; adjust this when logo gets smaller */
+    padding-bottom: 1.5rem;
+}
+
+@media screen and (max-width: 800px) {
+    footer {
+        padding-inline: 9px;
+        padding-bottom: .8rem;
+    }
+}
+  
+.pagefooter__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    background-image: url(../img/header/Header-Shape-Color.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* TO DO: is there a way to make the 2nd column of a 1-row grid go under the other one without keeping the same height? */
+
+.pagefooter__logo {
+    justify-self: right;
+
+}
+
+@media screen and (max-width: 800px) {
+    .pagefooter__logo {
+        justify-self: left;
+    }
+}
+
+/* TO DO: some of the following looks different (not as spot-on) after I changed a few things. */
+.pagefooter__logo img {
+    width: 30%;
+    object-fit: contain;
+    align-self: flex-end;
+    padding-top: 2rem;    
+}
+
+
+

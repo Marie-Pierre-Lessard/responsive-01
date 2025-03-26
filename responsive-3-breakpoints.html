@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="assets/css/site.css">
+        <script src="assets/js/site.js" defer></script>
+    <title>Adaptive, responsive og mobile-first design</title>
+</head>
+<body>
+    <header id="anchor-header" class="pageheader__grid">
+        <h1><img src="assets/img/header/Logo.png" alt="Responsive Design"></h1>
+        <div></div>
+    </header>
+    <main>
+        <div class="nav-container">
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#anchor-mobiles">Mobile Devices</a></li>
+                    <li><a href="#anchor-screens">Screens</a></li>
+                    <li><a href="#anchor-mediaqueries">Mediaqueries</a></li>
+                    <li><a href="#anchor-mobile-first">Mobile-First</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- SECTION 1 -->
+        <section id="anchor-mobiles">
+            <article>
+                <hgroup>
+                    <h2>HTML vises også på mobile enheder</h2>
+                    <p class="subtitle">Dit website skal fungere på mobil-enheder, og mindre skærme.</p>
+                </hgroup>
+            </article>
+            <div class="section-1-grid-1">
+                <a href="#anchor-header"><img src="assets/img/Image-Adaptive.png" alt="Adaptive design"></a>
+                <a href="#anchor-header"><img src="assets/img/Image-Responsive.png" alt="Responsive design"></a>
+                <a href="#anchor-header"><img src="assets/img/Image-Mobile-First.png" alt="Mobile-first design"></a>
+            </div>
+            <article>
+                <h2>Devices vs Desktop</h2>
+                <div class="section-1-grid-2">
+                    <div>
+                        <p>Omkring 2012 skiftede den andel af enheder der tilgik internettet og websites, fra "desktops" (computere), til mobile enheder (devices).</p>
+                        <p>I dag er det essentielt at din HTML ikke kun virker, men også er nemt at læse og navigere i på mobile enheder.</p>
+                    </div>
+                    <div>
+                        <p>Computere har oftest et "fysisk skærmområde", altså den faktuelle "størrelse" på minimum 15 tommer (inches).</p>
+                        <p>Mobiltelefoner har på trods en mindre størrelse ofte lige så stor "opløsning" (pixel-tæthed), altså samme opløsning på mindre område.</p>
+                    </div>
+                </div>
+            </article>
+            <article>
+                <h2>Begreber i Responsive Design</h2>
+                <!-- To get a responsive website: "You could opt for a fluid layout without tables for your design, with % widths that expand and contract to fit a visitor’s browser setting OR you could consider looking into responsive design solutions that will achieve much the same thing." https://www.hobo-web.co.uk/best-screen-size -->
+                <!-- dl-elementet: "A description list, with terms and descriptions:" https://www.w3schools.com/tags/tag_dl.asp -->
+                <dl>
+                    <div class="section-1-grid-3">
+                        <div class="dl-entry">- <dt><span class="dark-aqua-text">Adaptive:</span></dt></div>
+                        <div><dd>groft sagt et “skræddersyet design” til definerede skærmstørrelser.</dd></div>
+                        <div class="dl-entry">- <dt><span class="dark-aqua-text">Responsive:</span></dt></div>
+                        <div><dd>”flydende” og “device uafhængigt”, “fits all”, ikke så præcist.</dd></div>
+                        <div class="dl-entry">- <dt><span class="dark-aqua-text">Mobile-first:</span></dt></div>
+                        <div><dd>“design strategi” hvor man tager udgangspunkt i mobile devices.</dd></div>
+                    </div>
+                </dl>
+            </article>
+            <!-- Teacher's option/explanation (incomplete: it doesn't make things line up right yet) 
+                    address ul li {
+                        display: flex;
+                        justify-content: space-between;
+                    }
+
+                    span::before {
+                        content: "- ";
+                    }
+                    
+                    <address>
+                        <ul>
+                            <li><span></span><span></span></li>
+                            <li><span></span><span></span></li>
+                            <li><span></span><span></span></li>
+                            <li><span></span><span></span></li>
+                        </ul>    
+                    </address>    
+                    -->
+        </section>
+        <!-- SECTION 2 -->
+        <section id="anchor-screens">
+            <article>
+                <h2>Tommer og Pixels</h2>
+                <p class="subtitle">Lidt om skærm-bredder og viewports.</p>
+                <div class="section-2-grid-1">
+                    <div>
+                        <p>Skærmbredder er i høj grad afhængig af den udvikling der er i gang på hardware og specielt mobilmarkedet.</p>
+                        <p>Mobiltelefoner og tablets kommer i et hav af størrelser og opløsninger, og kan vise HTML og apps i både "vandret" og "lodret".</p>
+                    </div>
+                    <div>
+                        <p>"Pixeltætheden" <span class="dark-aqua-text">(ppi)</span> er et udtryk for skærmens opløsning, og er ikke et udtryk for den fysiske størrelse. Mobiltelefoner har oftest lige så høj, eller højere "opløsning" end computerskærme.</p>
+                        <p>Du bruger “media queries” til at angive det antal pixels der svarer til den fysiske bredde.</p>
+                    </div>
+                </div>
+            </article>
+            <div class="section-2-grid-2">
+                <a href="#anchor-header"><img src="assets/img/Screen-Desktop.png" alt="Opløsning/størrelse på desktop"></a>
+                <a href="#anchor-header"><img src="assets/img/Screen-Tablets.png" alt="Opløsning/størrelse på tablet"></a>
+                <a href="#anchor-header"><img src="assets/img/Screen-Mobile.png" alt="Opløsning/størrelse på mobil"></a>
+            </div>
+            <article>
+                <h2>Opløsning vs “Screen size”</h2>
+                <dl>
+                    <div class="section-2-grid-3">
+                        <div class="dl-entry">- <dt><span class="dark-aqua-text">Mobile phones:</span></dt></div>
+                        <div><dd>også kaldt “small devices”; pixel-tæthed omkring <span class="dark-aqua-text">300ppi</span> eller mere.</dd></div>
+                        <div class="dl-entry">- <dt><span class="dark-aqua-text">Tablets:</span></dt></div>
+                        <div><dd>“medium devices”; pixel-tæthed omkring <span class="dark-aqua-text">190ppi</span> eller mere.</dd></div>
+                        <div class="dl-entry">- <dt><span class="dark-aqua-text">Desktops:</span></dt></div>
+                        <div><dd>pixel-tæthed <span class="dark-aqua-text">72ppi</span> / eller mere (	Macbook Pro Retina 220.53ppi ).</dd></div>
+                    </div>
+                </dl>
+            </article>
+        </section>
+        <!-- SECTION 3 -->
+        <section id="anchor-mediaqueries">
+            <article>
+                <h2>Mediaqueries</h2>
+                <p class="subtitle">Om breakpoints og devices.</p>
+            </article>
+            <div class="section-3-grid">
+                <a href="#anchor-header"><img src="assets/img/Media-Screen.png" alt="Bredden på en tablet (svarer til ca. 992px på computerskærm) og en mobil (ca. 400px på computerskærm)"></a>
+            </div>
+            <article>
+                <p class="subtitle">Mediaqueries bruges til at angive det antal pixels på din computerskærm, der svarer til den fysiske størrelse devicet har.</p>
+                <p class="widely-spaced-p">@media screen and (<span class="dark-aqua-text">max-width</span>: 800px): træder i kraft <span class="dark-aqua-text">under 800px</span> på din computerskærm.</p>
+                <p class="widely-spaced-p">@media screen and (<span class="dark-aqua-text">min-width</span>: 800px): træder i kraft <span class="dark-aqua-text">over 800px</span> på din computerskærm.</p>
+                <h2>Meta Viewport</h2>
+                <p><span class="dark-aqua-text"><meta name="viewport" content="width=device-width, initial-scale=1.0"></span></p>
+                <p>Hvis ikke du har “meta viewport” i dit head-element så vil en nyere mobiltelefon vise dit website ud fra pixel-tætheden (ppi) og IKKE “device-width”.</p>
+                <p class="subtitle widely-spaced-p">Eksempel (træder i kraft under 800 pixels):</p>
+<pre><code>
+ <span class="dark-blue-text">@media screen and (max-width: 800px)</span> <span class="dark-aqua-text">{
+     body {
+     background-color: red;
+     }</span>
+ <span class="dark-blue-text">}</span>
+</code></pre>
+            </article>
+        </section>
+        <!-- SECTION 4 -->
+        <section id="anchor-mobile-first">
+            <article>
+                <h2>Mobile-First</h2>
+                <p class="subtitle">Et udtryk for den “strategi” du bruger når du starter et projekt.</p>
+            </article>
+            <div class="section-4-grid">
+                <a href="#anchor-header"><img src="assets/img/Desktop-First.png" alt="Desktop-first strategien"></a>
+                <a href="#anchor-header"><img src="assets/img/Mobile-First.png" alt="Mobile-first strategien"></a>
+            </div>
+        </section>
+        <section>
+            <article>
+                <h2>Start “Bagfra”</h2>
+                <p class="subtitle">Overblikket over det samlede projekt kan godt give udfordringer. Start evt. med “header og menu”.</p>
+            </article>
+        </section>
+    </main>
+    <footer class="pagefooter__grid">
+        <h3>Mere om fysiske størrelser:</h3>
+        <a href="https://screensiz.es" target="_blank" rel="noopener noreferrer">https://screensiz.es/</a>
+        <h3>Mere om opløsninger:</h3>
+        <a href="https://www.hobo-web.co.uk/best-screen-size" target="_blank" rel="noopener noreferrer">https://www.hobo-web.co.uk/best-screen-size/</a>
+        <h3>Statcounter:</h3>
+        <a href="https://gs.statcounter.com" target="_blank" rel="noopener noreferrer">https://gs.statcounter.com/</a>
+        <!-- A way to jump back to header: the following is an anchor link to the top of the page. -->
+        <a href="#anchor-header" class="pagefooter__logo"><img src="assets/img/header/Logo.png" alt="Responsive Design"></a>
+    </footer>
+</body>
+</html>
