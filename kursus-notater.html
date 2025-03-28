@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Alternative to universal selector: CSS RESET (with universal selector), meyerweb.com (IP rights? does he require a mention) */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            background-color: #ddd;
+        }
+
+        li {
+            background-color: #ccc;
+            /* This shows the background color of the list (ul) between the list items. */
+            margin-bottom: .4rem;
+        }
+
+        header {
+            display: grid;
+            /* Different ways to write values */
+            grid-template-columns: 78px 50% 1fr;
+            border: 2px solid red;
+            box-sizing: border-box;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+        }
+    </style> 
+    <title>Flex?</title>
+</head>
+<body>
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+    </ul>
+    <ul>
+        <li>Right 1</li>
+        <li>Right 2</li>
+    </ul>
+</body>
+</html>

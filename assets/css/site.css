@@ -113,7 +113,7 @@ footer a:focus {
     color: var(--clr-dark-aqua);
 }
 
-/* background-color: var(--clr-dark-blue); works, but it is the same colour as the background. */
+/* background-color: var(--clr-dark-blue); works, but it is almost the same colour as the background; this creates more contrast/visibility. */
 .main-nav a:active,
 footer a:active {
     background-color: #324473;   
@@ -147,14 +147,22 @@ header {
 .pageheader__grid {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto 125px;
+    /* The height of the 2nd row does need to be over 125px, otherwise the diagonal line disappears behind the main-nav. */
+    /* TO DO
+    Q: why does display: block; make the height of my second row disappear?
+    display: block; is supposed to make the background image fill the whole space without leaving a small white line between the main-nav and the picture. It is because padding and margins don't get applied to inline elements; display: block; leads the image to be treated as a block element.
+    display: block;
+    Adding a negative margin does remove the thin white line that shows between the header and the nav on small screens, but it moves the triangular shape downwards. 
+    margin-bottom: -0.5px;
+    Other alternative: putting 2 pics in HTML file, the logo with a z-index to make it show on top of the background. Then, I should be able to apply display: block; to the background. 
+    */
+    grid-template-rows: auto 150px;
     background-image: url(../img/header/Header-Image.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    /* The following negative margin is to remove the thin white line that shows between the header and the nav on small screens. */
-    margin-bottom: -1px;
-    /* TO DO: adjust the position of the background more accurately (upwards) in order to avoid breaking the straight line on wide screens. */
+    /* TO DO: I can't see if the following works. box-shadow works on divs. Potential alternative: border-bottom: 20px grey; ? */
+    box-shadow: 20px 20px 50px 15px grey;
 }
 
 header img {
@@ -190,11 +198,6 @@ header img {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    /* I tried to add a shadow with the 2 following, to no avail (there are no divs, and box-shadow works on divs):
-    border-bottom: 20px grey;
-    box-shadow: 20px 20px 50px 15px grey;
-    TO DO: add a div
-    */
     & ul {
         list-style: none;
     }
@@ -212,7 +215,7 @@ header img {
 }    
 
 /* Media queries: in a mobile-first design project, the following changes the shape of the menu when the screen width is over 600px.
-PROBLEM: I experimented in another file, and it bugs if I trie to get the rule @media screen and (min-width: 1200px) set for a master desktop version, probably because the grid is already defined elsewhere (more or less). Here, it doesn't do anything.
+PROBLEM: I experimented in another file, and it bugs if I try to get the rule @media screen and (min-width: 1200px) set for a master desktop version, probably because the grid is already defined elsewhere (more or less). Here, it doesn't do anything.
 TO DO: This is not as close to the mobile header as it needs to be, but it is sticky and responsive. */
 
 @media screen and (min-width: 1200px) {
@@ -345,8 +348,8 @@ dt {
 footer {
     /* Padding-inline is diff. in mobile v. only; p-block is the same (relative to font size, but that is also spacing between lines) */
     padding-inline: var(--inline-margin-and-padding);
-    /* TO DO: the logo has some built-in padding; adjust this when logo gets smaller */
-    padding-bottom: 1.5rem;
+    /* The logo has some built-in padding. */
+    padding-bottom: 1rem;
 }
 
 @media screen and (max-width: 800px) {
@@ -358,34 +361,52 @@ footer {
   
 .pagefooter__grid {
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: auto; 
     background-image: url(../img/header/Header-Shape-Color.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-/* TO DO: is there a way to make the 2nd column of a 1-row grid go under the other one without keeping the same height? */
-
-.pagefooter__logo {
+.pagefooter__grid img {
+    display: block;
+    width: 15rem;
+    object-fit: contain;
     justify-self: right;
+    padding-top: 2rem;    
+}
 
+.pagefooter__grid div:last-of-type {
+    grid-column: span 2;
 }
 
 @media screen and (max-width: 800px) {
-    .pagefooter__logo {
+    .pagefooter__grid img {
         justify-self: left;
     }
 }
 
-/* TO DO: some of the following looks different (not as spot-on) after I changed a few things. */
-.pagefooter__logo img {
-    width: 30%;
-    object-fit: contain;
-    align-self: flex-end;
-    padding-top: 2rem;    
+/* Teacher explained HOW TO make the 2nd column of a 1-row grid go under the other one without keeping the same height. 
+
+The example takes a class .footer-main witha single row and column, and then it creates a media query to create more columns in the grid. 
+If there are divs in the DOM, they will position themselves inside the new grid when the breakpoint is reached.
+
+.footer-main {
+    display: grid;
+    gap: 0.5rem;
+    background-color: #77aa99;
 }
+
+@media (min-width: 800px) {
+    .footer-main {
+        grid-template-columns: 3fr 1fr;
+    }
+}
+
+*/
+
+
 
 
 
